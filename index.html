@@ -31,8 +31,8 @@
   .btn-review:active{transform:scale(.98)}
 
   .langs{display:flex;gap:8px;margin:14px 0 14px;position:sticky;top:0;background:var(--bg);padding:8px 0;z-index:5}
-  .langs button{flex:1;padding:11px 6px;border-radius:999px;border:1.5px solid var(--brand);
-    background:transparent;color:var(--brand);font-weight:700;font-size:14px;cursor:pointer;font-family:inherit}
+  .langs button{flex:1;padding:11px 4px;border-radius:999px;border:1.5px solid var(--brand);
+    background:transparent;color:var(--brand);font-weight:700;font-size:13px;white-space:nowrap;cursor:pointer;font-family:inherit}
   .langs button[aria-pressed="true"]{background:var(--brand);color:#fff}
 
   .intro{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 16px;font-size:14px;color:var(--sub);margin-bottom:16px}
@@ -73,13 +73,14 @@
 
   <div class="sec-title">
     <h2>서면 <span>로컬 맛집</span> 10곳</h2>
-    <p>Local Eats Near AUTOLOG · ローカルグルメ10選 · 在地美食10選</p>
+    <p>Local Eats Near AUTOLOG · ローカルグルメ10選 · 在地美食10選 · 本地美食10选</p>
   </div>
 
   <div class="langs" role="group" aria-label="Language">
     <button data-lang="en">English</button>
     <button data-lang="ja">日本語</button>
     <button data-lang="zh">繁體中文</button>
+    <button data-lang="zhs">简体中文</button>
   </div>
 
   <div class="intro" id="intro"></div>
@@ -121,61 +122,80 @@ const UI = {
     map:"在 NAVER 地圖開啟", gmap:"用 Google 地圖查地址",
     note:"營業時間可能變動，出發前請先在 NAVER 地圖確認。",
     near1:"就在 AUTOLOG 附近", near2:"與 AUTOLOG 同一條巷子"
+  },
+  zhs:{
+    rvTitle:"请为 AUTOLOG 留下评价 ⭐",
+    rvSub:"只需30秒，对我们帮助很大。谢谢！",
+    rvBtn:"撰写 Google 评价",
+    intro:"<b>AUTOLOG 周边10家本地店铺</b>，由土生土长的釜山人老板亲自吃过后挑选。<br><br>这些都是靠口口相传的真正本地人爱店，所以大多<b>不在 Google 地图上</b>。但全部都能在韩国人最常用的地图 App <b>NAVER 地图</b>上找到，请点按钮搜索并确认位置。",
+    map:"在 NAVER 地图打开", gmap:"用 Google 地图查地址",
+    note:"营业时间可能变动，出发前请先在 NAVER 地图确认。",
+    near1:"就在 AUTOLOG 附近", near2:"与 AUTOLOG 在同一条巷子"
   }
 };
 
 // name: 한글 / en: romanized / q: Naver search query / url: exact link (optional)
 const PLACES = [
   { ko:"송정3대국밥", en:"Songjeong 3-Dae Gukbap", q:"송정3대국밥 서면", addr:"부산진구 서면로68번길 33", enAddr:"33 Seomyeon-ro 68beon-gil, Busanjin-gu, Busan",
-    tags:{en:["Pork soup"],ja:["豚汁クッパ"],zh:["豬肉湯飯"]},
+    tags:{en:["Pork soup"],ja:["豚汁クッパ"],zh:["豬肉湯飯"],zhs:["猪肉汤饭"]},
     d:{en:"Busan's classic pork soup (dwaeji-gukbap), in Seomyeon's famous pork-soup alley. The broth is clear and mild. It's already a famous spot that tourists love too! AUTOLOG's owner always goes here after a night of heavy drinking.",
        ja:"釜山の代表的な豚肉スープ（テジクッパ）。西面のクッパ通りにあり、スープは澄んでやさしい味です。観光客にもすでに有名なお店！AUTOLOGのオーナーも、飲みすぎた日は必ず行く名店です。",
-       zh:"釜山代表性的豬肉湯飯，位於西面豬肉湯飯街，湯頭清爽溫和。已經是遊客也很熟悉的名店！AUTOLOG 老闆喝多了之後一定會去吃。"} },
+       zh:"釜山代表性的豬肉湯飯，位於西面豬肉湯飯街，湯頭清爽溫和。已經是遊客也很熟悉的名店！AUTOLOG 老闆喝多了之後一定會去吃。",
+       zhs:"釜山代表性的猪肉汤饭，位于西面猪肉汤饭街，汤底清爽温和。已经是游客也很熟悉的名店！AUTOLOG 老板喝多了之后一定会去吃。"} },
   { ko:"기장손칼국수", en:"Gijang Son-kalguksu", q:"기장손칼국수 서면", addr:"부산진구 서면로 56", enAddr:"56 Seomyeon-ro, Busanjin-gu, Busan",
-    tags:{en:["Noodles","Cheap eats"],ja:["麺","安い"],zh:["麵食","平價"]},
+    tags:{en:["Noodles","Cheap eats"],ja:["麺","安い"],zh:["麵食","平價"],zhs:["面食","平价"]},
     d:{en:"Hand-cut noodles and kimbap in Seomyeon Market. Simple and cheap. The seats are small, but that is exactly what gives it a real local atmosphere! It is already well known and approved by locals.",
        ja:"西面市場の手打ちカルグクスとキンパ。シンプルで安いです。席は狭いけれど、その分ローカルな雰囲気があります！地元の人にもすでに認められた有名店です。",
-       zh:"西面市場的手擀刀切麵與海苔飯捲，簡單又便宜。座位雖然小，但正因如此充滿在地氛圍！早已獲得在地人認可的名店。"} },
+       zh:"西面市場的手擀刀切麵與海苔飯捲，簡單又便宜。座位雖然小，但正因如此充滿在地氛圍！早已獲得在地人認可的名店。",
+       zhs:"西面市场的手擀刀切面和紫菜包饭，简单又便宜。座位虽小，但正因如此充满本地氛围！早已获得本地人认可的名店。"} },
   { ko:"춘하추동밀면 서면본점", en:"Chunhachudong Milmyeon", q:"춘하추동밀면 서면본점", addr:"부산진구 서면문화로 48-1", enAddr:"48-1 Seomyeonmunhwa-ro, Busanjin-gu, Busan",
-    tags:{en:["Busan noodles"],ja:["釜山名物の麺"],zh:["釜山名物麵"]},
+    tags:{en:["Busan noodles"],ja:["釜山名物の麺"],zh:["釜山名物麵"],zhs:["釜山特色面"]},
     d:{en:"Milmyeon is Busan's own chilled wheat noodle dish, famous as a summer food. Try the cold-broth mul-milmyeon with dumplings (mandu). In summer, locals even queue up to get in!",
        ja:"ミルミョンは釜山だけの冷たい小麦麺で、夏の食べ物として有名です。冷たいスープのムル・ミルミョンにマンドゥ（餃子）をぜひ一緒に。夏は地元の人で行列ができるほどです！",
-       zh:"密麵（밀면）是釜山獨有的冰涼小麥麵，以夏季美食聞名。推薦冰湯的水密麵搭配煎餃（饅頭）。夏天甚至會有在地人排隊候位！"} },
+       zh:"密麵（밀면）是釜山獨有的冰涼小麥麵，以夏季美食聞名。推薦冰湯的水密麵搭配煎餃（饅頭）。夏天甚至會有在地人排隊候位！",
+       zhs:"密面（밀면）是釜山独有的冰凉小麦面，以夏季美食闻名。推荐冰汤的水密面搭配煎饺（馒头）。夏天甚至会有本地人排队等位！"} },
   { ko:"하연정순두부 부산본점", en:"Hayeonjeong Sundubu", q:"하연정순두부 부산본점", addr:"부산진구 서면로68번길 35 2층", enAddr:"2F, 35 Seomyeon-ro 68beon-gil, Busanjin-gu, Busan",
-    tags:{en:["Tofu stew","Set meal"],ja:["純豆腐チゲ","定食"],zh:["嫩豆腐鍋","套餐"]},
+    tags:{en:["Tofu stew","Set meal"],ja:["純豆腐チゲ","定食"],zh:["嫩豆腐鍋","套餐"],zhs:["嫩豆腐锅","套餐"]},
     d:{en:"Korean home-style cooking that locals already know well! Soft tofu stew and dooroo-ji (spicy pork stir-fry) sets, on the 2nd floor right next to Seomyeon Market. Side dishes come with it and the portions are generous. The humble exterior proves it is a long-standing, trusted restaurant.",
        ja:"地元の人にはすでに有名な韓国の家庭料理！純豆腐チゲとトゥルチギ（豚肉炒め）のセット。西面市場のすぐ隣のビルの2階にあります。おかず付きでボリューム満点。古びた外観が、長く愛されてきた名店であることを物語っています。",
-       zh:"在地人早已熟知的韓式家常菜！嫩豆腐鍋與辣炒豬肉（두루치기）套餐，就在西面市場旁大樓2樓。附小菜，份量十足。樸舊的外觀正是老店實力的證明。"} },
+       zh:"在地人早已熟知的韓式家常菜！嫩豆腐鍋與辣炒豬肉（두루치기）套餐，就在西面市場旁大樓2樓。附小菜，份量十足。樸舊的外觀正是老店實力的證明。",
+       zhs:"本地人早已熟知的韩式家常菜！嫩豆腐锅和辣炒猪肉（두루치기）套餐，就在西面市场旁大楼2楼。附小菜，分量十足。朴旧的外观正是老店实力的证明。"} },
   { ko:"동방축산 서면점", en:"Dongbang Chuksan", q:"동방축산 서면점", addr:"부산진구 중앙대로691번길 60", enAddr:"60 Jungang-daero 691beon-gil, Busanjin-gu, Busan",
-    tags:{en:["Korean BBQ","24 hours"],ja:["韓国焼肉","24時間"],zh:["韓式燒肉","24小時"]},
+    tags:{en:["Korean BBQ","24 hours"],ja:["韓国焼肉","24時間"],zh:["韓式燒肉","24小時"],zhs:["韩式烤肉","24小时"]},
     d:{en:"A pork belly spot that AUTOLOG's owner visits at least once a week! Open 24 hours, so you can go day or night, and it is cheap for the taste and portions.",
        ja:"AUTOLOGのオーナーが週に1回は必ず行くサムギョプサルの名店！24時間営業なので昼でも夜でも行けて、味とボリュームのわりに安いです。",
-       zh:"AUTOLOG 老闆每週至少去一次的五花肉名店！24小時營業，白天深夜都能去，以味道和份量來說價格很實惠。"} },
+       zh:"AUTOLOG 老闆每週至少去一次的五花肉名店！24小時營業，白天深夜都能去，以味道和份量來說價格很實惠。",
+       zhs:"AUTOLOG 老板每周至少去一次的五花肉名店！24小时营业，白天深夜都能去，以味道和分量来说价格很实惠。"} },
   { ko:"호돌이 식육식당", en:"Hodori Sikyuk Sikdang", q:"호돌이 식육식당 전포동", addr:"부산진구 전포동 204-29", enAddr:"204-29 Jeonpo-dong, Busanjin-gu, Busan",
-    tags:{en:["Pork belly BBQ","Very local"],ja:["サムギョプサル","ローカル感"],zh:["五花肉","在地感"]},
+    tags:{en:["Pork belly BBQ","Very local"],ja:["サムギョプサル","ローカル感"],zh:["五花肉","在地感"],zhs:["五花肉","本地感"]},
     d:{en:"The pork belly is really delicious and the staff are friendly. Good meat quality at a low price. The local feel is very strong, and it is a place foreign visitors have never heard of.",
        ja:"サムギョプサルが本当に美味しく、スタッフも親切です。安い価格で肉の品質も良いお店。ローカル感がとても強く、外国人にはまったく知られていない隠れた名店です。",
-       zh:"五花肉真的非常好吃，店員也很親切。價格實惠、肉品品質好。在地氛圍非常濃厚，是外國遊客完全不知道的隱藏名店。"} },
+       zh:"五花肉真的非常好吃，店員也很親切。價格實惠、肉品品質好。在地氛圍非常濃厚，是外國遊客完全不知道的隱藏名店。",
+       zhs:"五花肉真的非常好吃，店员也很亲切。价格实惠、肉品质量好。本地氛围非常浓厚，是外国游客完全不知道的隐藏名店。"} },
   { ko:"뎐벼락막창", en:"Dyeonbyeorak Makchang", url:"https://naver.me/5huaeiFR", addr:"부산진구 부전동 168-50", enAddr:"168-50 Bujeon-dong, Busanjin-gu, Busan",
-    tags:{en:["Pork belly","Makchang","Old-school"],ja:["サムギョプサル","マクチャン","老舗"],zh:["五花肉","豬腸(막창)","老店"]},
+    tags:{en:["Pork belly","Makchang","Old-school"],ja:["サムギョプサル","マクチャン","老舗"],zh:["五花肉","豬腸(막창)","老店"],zhs:["五花肉","猪肠(막창)","老店"]},
     d:{en:"Pork belly and makchang (grilled pork intestines). An old restaurant with a strong local feel, loved by young and old alike.",
        ja:"サムギョプサルとマクチャン（豚の腸の焼き）の店。老舗ならではのローカル感で、若者から年配の方まで幅広く通います。",
-       zh:"五花肉與豬腸（막창）燒烤店。老店才有的在地感，不分年輕人與長輩都愛去。"} },
+       zh:"五花肉與豬腸（막창）燒烤店。老店才有的在地感，不分年輕人與長輩都愛去。",
+       zhs:"五花肉与猪肠（막창）烧烤店。老店才有的本地感，不分年轻人与长辈都爱去。"} },
   { ko:"미라이", en:"Mirai", url:"https://naver.me/GbDFKrCV", addr:"부산진구 부전동 168-82", enAddr:"168-82 Bujeon-dong, Busanjin-gu, Busan", near:1,
-    tags:{en:["Izakaya","Moody & trendy"],ja:["居酒屋","おしゃれ"],zh:["居酒屋","時尚氛圍"]},
+    tags:{en:["Izakaya","Moody & trendy"],ja:["居酒屋","おしゃれ"],zh:["居酒屋","時尚氛圍"],zhs:["居酒屋","时尚氛围"]},
     d:{en:"A Japanese-style izakaya. Dark and moody, popular with young, trendy people. The food is tasty and fairly cheap.",
        ja:"日本式の居酒屋。薄暗くて雰囲気があり、若くておしゃれな人が集まります。料理は安くて美味しいです。",
-       zh:"日式居酒屋。昏暗有氣氛，年輕時尚的人很多，料理平價又好吃。"} },
+       zh:"日式居酒屋。昏暗有氣氛，年輕時尚的人很多，料理平價又好吃。",
+       zhs:"日式居酒屋。昏暗有氛围，年轻时尚的人很多，料理平价又好吃。"} },
   { ko:"천탁", en:"Cheontak", q:"천탁 중앙대로680번가길 61", addr:"부산진구 중앙대로680번가길 61", enAddr:"61 Jungang-daero 680beon-ga-gil, Busanjin-gu, Busan", near:2,
-    tags:{en:["Korean pub","Late night","Fire show"],ja:["韓国伝統酒場","深夜営業","火のショー"],zh:["韓國傳統酒館","營業到深夜","火焰表演"]},
+    tags:{en:["Korean pub","Late night","Fire show"],ja:["韓国伝統酒場","深夜営業","火のショー"],zh:["韓國傳統酒館","營業到深夜","火焰表演"],zhs:["韩国传统酒馆","营业到深夜","火焰表演"]},
     d:{en:"A Korean traditional pub (minsokjujeom) serving pajeon (savory pancakes) and makgeolli. Open late, with lots of young people. Order the cheese jeon for a fire show.",
        ja:"韓国の伝統酒場。パジョン（韓国チヂミ）とマッコリが中心で、深夜まで営業。若い人が多く、チーズジョンを頼むと火のパフォーマンスが見られます。",
-       zh:"韓國傳統酒館（민속주점），主打蔥煎餅與馬格利酒，營業到很晚，年輕人很多。點起司煎餅還有火焰表演。"} },
+       zh:"韓國傳統酒館（민속주점），主打蔥煎餅與馬格利酒，營業到很晚，年輕人很多。點起司煎餅還有火焰表演。",
+       zhs:"韩国传统酒馆（민속주점），主打葱煎饼与马格利酒，营业到很晚，年轻人很多。点芝士煎饼还有火焰表演。"} },
   { ko:"가로수 그늘아래", en:"Garosu Geuneul-arae", url:"https://naver.me/5Ne3TOBK", addr:"부산진구 부전동 168-320", enAddr:"168-320 Bujeon-dong, Busanjin-gu, Busan",
-    tags:{en:["Bar","Fusion Korean","Lively"],ja:["居酒屋","フュージョン韓国料理","にぎやか"],zh:["酒吧","創意韓式料理","熱鬧"]},
+    tags:{en:["Bar","Fusion Korean","Lively"],ja:["居酒屋","フュージョン韓国料理","にぎやか"],zh:["酒吧","創意韓式料理","熱鬧"],zhs:["酒吧","创意韩式料理","热闹"]},
     d:{en:"A loud, lively bar full of young Koreans. The fusion Korean food will feel unique if you are visiting. A must if you want to feel the young Korean crowd.",
        ja:"若い韓国人でにぎわう、にぎやかなお店。フュージョン韓国料理は外国人には新鮮に感じられます。若い韓国人の雰囲気を味わいたい人は必訪です。",
-       zh:"年輕韓國人很多的熱鬧酒吧，融合式韓國料理對外國人來說很獨特。想體驗年輕韓國人的氛圍，一定要來。"} },
+       zh:"年輕韓國人很多的熱鬧酒吧，融合式韓國料理對外國人來說很獨特。想體驗年輕韓國人的氛圍，一定要來。",
+       zhs:"年轻韩国人很多的热闹酒吧，融合式韩国料理对外国人来说很独特。想体验年轻韩国人的氛围，一定要来。"} },
 ];
 
 let lang = "en";
@@ -183,7 +203,7 @@ const $ = id => document.getElementById(id);
 
 function render(){
   const t = UI[lang];
-  document.documentElement.lang = lang === "zh" ? "zh-Hant" : lang;
+  document.documentElement.lang = lang === "zh" ? "zh-Hant" : lang === "zhs" ? "zh-Hans" : lang;
   $("rv-title").textContent = t.rvTitle;
   $("rv-sub").textContent = t.rvSub;
   $("rv-btn").textContent = t.rvBtn;
@@ -224,7 +244,7 @@ document.querySelectorAll(".langs button").forEach(b =>
   if(saved && UI[saved]) lang = saved;
   else {
     const n = (navigator.language || "en").toLowerCase();
-    lang = n.startsWith("ja") ? "ja" : n.startsWith("zh") ? "zh" : "en";
+    lang = n.startsWith("ja") ? "ja" : n.startsWith("zh") ? ((/hant|tw|hk|mo/).test(n) ? "zh" : "zhs") : "en";
   }
   render();
 })();
